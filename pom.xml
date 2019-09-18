@@ -5,14 +5,14 @@
 
     <groupId>whysy.wrapperjjwt</groupId>
     <artifactId>wrapperjjwt</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>wrapperjjwt</name>
-    <description>Java wrapper for jjwt</description>
+    <description>Java wrapper for jjwt to generate JWT for Ghost CMS admin API</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <jjwt.version>0.10.6</jjwt.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>

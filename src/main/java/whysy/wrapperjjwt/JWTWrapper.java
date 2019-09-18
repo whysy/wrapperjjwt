@@ -43,8 +43,6 @@ public class JWTWrapper {
     private static final Logger LOGGER = Logger.getLogger(JWTWrapper.class.getName());
     private static final String API_KEY_SPLIT_CHARACTER = ":";
     private static final int TOKEN_VALIDITY = 5;
-    private String keyId;
-    private String secret;
 
     /**
      * Generate a JWT Token from the given key parameter. The token validity is 5 minutes
@@ -52,22 +50,22 @@ public class JWTWrapper {
      * @param apiKey API key obtained by creating a new Custom Integration under the Integrations screen in Ghost Admin
      * @return the JWT Token, in case of error return NULL
      */
-    public String generateToken(String apiKey) {
+    public static String generateToken(String apiKey) {
         String token = null;
 
         try {
             // Extract keyId and secret
-            extractSecret(apiKey);
+            String[] secret = extractSecret(apiKey);
 
             // Generate algorithm from secret
-            byte[] keyBytes = Hex.decodeHex(secret);
+            byte[] keyBytes = Hex.decodeHex(secret[1]);
             Algorithm algorithm = Algorithm.HMAC256(keyBytes);
 
             // Create claims
             Map<String, Object> headerClaims = new HashMap<>();
             headerClaims.put("typ", "JWT");
             headerClaims.put("alg", "HS256");
-            headerClaims.put("kid", keyId);
+            headerClaims.put("kid", secret[0]);
 
             // Create token
             token = JWT.create()
@@ -93,12 +91,11 @@ public class JWTWrapper {
      * Extract KeyId and secret from the given Admin key
      *
      * @param apiKey API key obtained by creating a new Custom Integration under the Integrations screen in Ghost Admin
+     * @return
      */
-    private void extractSecret(String apiKey) {
+    private static String[] extractSecret(String apiKey) {
         if (StringUtils.isNotEmpty(apiKey) && apiKey.contains(API_KEY_SPLIT_CHARACTER)) {
-            String[] split = apiKey.split(API_KEY_SPLIT_CHARACTER);
-            keyId = split[0];
-            secret = split[1];
+            return apiKey.split(API_KEY_SPLIT_CHARACTER);
         } else {
             throw new IllegalArgumentException("The Admin key must be not null and must contain two part separate by " + "'" + API_KEY_SPLIT_CHARACTER + "'");
         }

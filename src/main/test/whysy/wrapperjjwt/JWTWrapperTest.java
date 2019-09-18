@@ -43,16 +43,14 @@ public class JWTWrapperTest {
 
     @Test
     public void createToken() {
-        JWTWrapper jwtWrapper = new JWTWrapper();
-        String token = jwtWrapper.generateToken(API_KEY_VALUE);
+        String token = JWTWrapper.generateToken(API_KEY_VALUE);
 
         assertNotNull("The token must be not null", token);
     }
 
     @Test
     public void checkToken() throws DecoderException {
-        JWTWrapper jwtWrapper = new JWTWrapper();
-        String token = jwtWrapper.generateToken(API_KEY_VALUE);
+        String token = JWTWrapper.generateToken(API_KEY_VALUE);
 
         byte[] keyBytes = Hex.decodeHex("4d8b914f80cbd5297793bb6c8be044a6e7266eb7f08ac90b9c390dd27735a193");
 

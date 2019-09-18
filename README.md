@@ -26,34 +26,26 @@ git clone https://github.com/whysy/wrapperjjwt.git
 Open the project and build
 
 ```
-until finished
+mvn clean install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Integration example
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+Add dependency to your pom.xml
 
 ```
-Give an example
+<dependency>
+    <groupId>whysy.wrapperjjwt</groupId>
+    <artifactId>wrapperjjwt</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
+and use it
 
 ```
-Give an example
+ String token = JWTWrapper.generateToken(API_KEY_VALUE);
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
@@ -66,10 +58,3 @@ Add additional notes about how to deploy this on a live system
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
