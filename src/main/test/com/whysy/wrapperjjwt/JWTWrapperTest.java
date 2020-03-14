@@ -1,6 +1,6 @@
 /*
  * MIT License
- * Copyright (c) 2019 whysy
+ * Copyright (c) 2020 whysy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package whysy.wrapperjjwt;
+package com.whysy.wrapperjjwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
